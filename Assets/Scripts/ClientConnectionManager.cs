@@ -2,6 +2,8 @@
 using R3;
 using TMPro;
 using Unity.Entities;
+using Unity.NetCode;
+using Unity.Networking.Transport;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,6 +27,10 @@ public class ClientConnectionManager : MonoBehaviour
                 {
                         _buttonText = _connectButton.GetComponentInChildren<TMP_Text>();
                 }
+
+                //default value for tests
+                _addressField.text = "127.0.0.1";
+                _portField.text = "7979";
                 
                 _disposables = new CompositeDisposable();
                 _connectionModeDropdown.OnValueChangedAsObservable().Subscribe(OnConnectionModeChange).AddTo(_disposables);
@@ -94,12 +100,22 @@ public class ClientConnectionManager : MonoBehaviour
 
         private void StartServer()
         {
-                
+                var serverWorld = ClientServerBootstrap.CreateServerWorld("SomeServerWorld");
+                var serverEndpoint = NetworkEndpoint.AnyIpv4.WithPort(Port);
+
+                using var networkDriverQuery = serverWorld.EntityManager.CreateEntityQuery(ComponentType.ReadWrite<NetworkStreamDriver>());
+                networkDriverQuery.GetSingletonRW<NetworkStreamDriver>().ValueRW.Listen(serverEndpoint);
         }
 
         private void StartClient()
         {
+                var clientWorld = ClientServerBootstrap.CreateClientWorld("SomeClientWorld");
+                var connectionEndpoint = NetworkEndpoint.Parse(Address, Port);
                 
+                using var networkDriverQuery = clientWorld.EntityManager.CreateEntityQuery(ComponentType.ReadWrite<NetworkStreamDriver>());
+                networkDriverQuery.GetSingletonRW<NetworkStreamDriver>().ValueRW.Connect(clientWorld.EntityManager, connectionEndpoint);
+
+                World.DefaultGameObjectInjectionWorld = clientWorld;
         }
         
         private void OnDisable()
