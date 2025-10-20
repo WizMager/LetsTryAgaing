@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Components;
 using R3;
 using TMPro;
 using Unity.Entities;
@@ -116,6 +116,9 @@ public class ClientConnectionManager : MonoBehaviour
                 networkDriverQuery.GetSingletonRW<NetworkStreamDriver>().ValueRW.Connect(clientWorld.EntityManager, connectionEndpoint);
 
                 World.DefaultGameObjectInjectionWorld = clientWorld;
+                
+                var requestEntity = clientWorld.EntityManager.CreateEntity();
+                clientWorld.EntityManager.AddComponentData(requestEntity, new ClientSpawn());
         }
         
         private void OnDisable()
