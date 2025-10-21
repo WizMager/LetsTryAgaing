@@ -2,7 +2,7 @@
 
 namespace Components
 {
-    public struct PlayerPrefabComponent : IComponentData
+    public struct PrefabsComponent : IComponentData
     {
         public Entity Player;
     }

@@ -13,7 +13,10 @@ namespace Authoring
             public override void Bake(PrefabsAuthoring authoring)
             {
                 var prefabContainerEntity = GetEntity(TransformUsageFlags.None);
-                AddComponent(prefabContainerEntity, new PlayerPrefabComponent{Player = GetEntity(authoring.PlayerPrefab, TransformUsageFlags.Dynamic)});
+                AddComponent(prefabContainerEntity, new PrefabsComponent
+                {
+                    Player = GetEntity(authoring.PlayerPrefab, TransformUsageFlags.Dynamic)
+                });
             }
         }
     }
