@@ -23,6 +23,8 @@ namespace Authoring
                     Value = authoring.PlayerSpeed
                 });
                 AddComponent<InputDataComponent>(entity);
+                AddComponent(entity, new InputActiveTag());
+                SetComponentEnabled<InputActiveTag>(entity, false);
             }
         }
     }

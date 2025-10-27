@@ -10,12 +10,6 @@ namespace Systems
     public partial struct InitializePlayerSystem : ISystem
     {
         [BurstCompile]
-        public void OnCreate(ref SystemState state)
-        {
-            
-        }
-
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
