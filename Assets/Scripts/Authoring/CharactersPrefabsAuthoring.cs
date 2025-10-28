@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Authoring
 {
-    public class PrefabsAuthoring : MonoBehaviour
+    public class CharactersPrefabsAuthoring : MonoBehaviour
     {
         public GameObject PlayerPrefab;
         
-        private class PrefabAuthoringBaker : Baker<PrefabsAuthoring>
+        private class PrefabAuthoringBaker : Baker<CharactersPrefabsAuthoring>
         {
-            public override void Bake(PrefabsAuthoring authoring)
+            public override void Bake(CharactersPrefabsAuthoring authoring)
             {
                 var prefabContainerEntity = GetEntity(TransformUsageFlags.None);
                 AddComponent(prefabContainerEntity, new PrefabsComponent
