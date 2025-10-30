@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -6877403620880672821}
   - component: {fileID: 5655515647847497380}
   - component: {fileID: -5003248059477249972}
+  - component: {fileID: 9159184650653016579}
   m_Layer: 7
   m_Name: SuperAbilityPrefab
   m_TagString: Untagged
@@ -176,3 +177,16 @@ MonoBehaviour:
   UseSingleBaseline: 0
   RollbackPredictedSpawnedGhostState: 0
   RollbackPredictionOnStructuralChanges: 1
+--- !u!114 &9159184650653016579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390106468533880827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3914050a57c4688a362a89f14dc64b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnTimer: 3
