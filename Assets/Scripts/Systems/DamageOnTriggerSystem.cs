@@ -4,6 +4,7 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
 using Unity.Physics.Systems;
+using UnityEngine;
 
 namespace Systems
 {
@@ -18,7 +19,7 @@ namespace Systems
             state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
         }
 
-        [BurstCompile]
+        //[BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
@@ -33,7 +34,7 @@ namespace Systems
             };
 
             var simulationSingleton = SystemAPI.GetSingleton<SimulationSingleton>();
-            damageOnTriggerJob.Schedule(simulationSingleton, state.Dependency);
+            state.Dependency = damageOnTriggerJob.Schedule(simulationSingleton, state.Dependency);
         }
     }
     
@@ -64,7 +65,7 @@ namespace Systems
             {
                 return;
             }
-
+            
             var alreadyDamageBuffer = AlreadyDamagedEntitiesBufferLookup[damageDealingEntity];
             foreach (var alreadyDamagedEntitiesBuffer in alreadyDamageBuffer)
             {
