@@ -26,6 +26,7 @@ namespace Authoring
                 AddComponent(entity, new InputActiveTag());
                 SetComponentEnabled<InputActiveTag>(entity, false);
                 AddComponent<InputAbilityComponent>(entity);
+                AddComponent<AimInputComponent>(entity);
             }
         }
     }

@@ -9,7 +9,11 @@ namespace Authoring
     public class AbilityPrefabsAuthoring : MonoBehaviour
     {
         public GameObject SuperAbilityPrefab;
+        public GameObject ShootAbilityPrefab;
+        
         public float SuperAbilityCooldown;
+        public float ShootAbilityCooldown;
+        
         public NetCodeConfig NetCodeConfig;
 
         private int SimulationTickRate => NetCodeConfig.ClientServerTickRate.SimulationTickRate;
@@ -22,11 +26,14 @@ namespace Authoring
 
                 AddComponent(entity, new AbilityPrefabs
                 {
-                    SuperAbilityPrefab = GetEntity(authoring.SuperAbilityPrefab, TransformUsageFlags.Dynamic)
+                    SuperAbilityPrefab = GetEntity(authoring.SuperAbilityPrefab, TransformUsageFlags.Dynamic),
+                    ShootAbility = GetEntity(authoring.ShootAbilityPrefab, TransformUsageFlags.Dynamic),
+
                 });
                 AddComponent(entity, new AbilityCooldownTicksComponent
                 {
-                    SuperAbility = (uint)(authoring.SuperAbilityCooldown * authoring.SimulationTickRate)
+                    SuperAbility = (uint)(authoring.SuperAbilityCooldown * authoring.SimulationTickRate),
+                    ShootAbility = (uint)(authoring.ShootAbilityCooldown * authoring.SimulationTickRate)
                 });
                 AddBuffer<AbilityCooldownTargetTicks>(entity);
             }

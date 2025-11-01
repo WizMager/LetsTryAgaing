@@ -7,5 +7,6 @@ namespace Components
     public struct InputAbilityComponent : IInputComponentData
     {
         [GhostField] public InputEvent SuperAbility;
+        [GhostField] public InputEvent ShootAbility;
     }
 }

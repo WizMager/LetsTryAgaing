@@ -7,5 +7,6 @@ namespace Components
     {
         public NetworkTick Tick { get; set; }
         public NetworkTick SuperAbility;
+        public NetworkTick ShootAbility;
     }
 }
