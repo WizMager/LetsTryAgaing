@@ -168,3 +168,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SuperAbilityPrefab: {fileID: 4390106468533880827, guid: eab597b11f9e31d4289c45f362cba8ba, type: 3}
+  SuperAbilityCooldown: 5
+  NetCodeConfig: {fileID: 11400000, guid: 65ee329b193b99e458c25f0399c34f6c, type: 2}
